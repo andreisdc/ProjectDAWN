@@ -1,8 +1,10 @@
-package com.pontic_studio.myproperty;
+package com.pontic_studio.myproperty.MainActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.pontic_studio.myproperty.R;
 
 public class MainActivity extends AppCompatActivity {
 
