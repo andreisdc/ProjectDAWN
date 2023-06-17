@@ -2,15 +2,23 @@ package com.pontic_studio.myproperty.MainActivity.Fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.pontic_studio.myproperty.R;
 
-
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link MainFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class MainFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -59,4 +67,33 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
+	@Override
+	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+
+		Button button1 = view.findViewById(R.id.logInButtonChangeView);
+		Button button2 = view.findViewById(R.id.infoButtonChangeView);
+		Button button3 = view.findViewById(R.id.signupButtonChangeView);
+
+		button1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Navigation.findNavController(v).navigate(R.id.loginFragment);
+			}
+		});
+
+		button2.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Navigation.findNavController(v).navigate(R.id.infoFragment);
+			}
+		});
+
+		button3.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Navigation.findNavController(v).navigate(R.id.sigupFragment);
+			}
+		});
+	}
 }
