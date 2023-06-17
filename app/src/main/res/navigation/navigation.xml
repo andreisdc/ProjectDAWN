@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+	app:startDestination="@id/mainFragment">
+	<fragment
+		android:id="@+id/infoFragment"
+		android:name="com.pontic_studio.myproperty.MainActivity.Fragments.InfoFragment"
+		android:label="fragment_info"
+		tools:layout="@layout/fragment_info" >
+		<action
+			android:id="@+id/action_infoFragment_to_mainFragment"
+			app:destination="@id/mainFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/loginFragment"
+		android:name="com.pontic_studio.myproperty.MainActivity.Fragments.LoginFragment"
+		android:label="fragment_login"
+		tools:layout="@layout/fragment_login" />
+	<fragment
+		android:id="@+id/mainFragment"
+		android:name="com.pontic_studio.myproperty.MainActivity.Fragments.MainFragment"
+		android:label="fragment_main"
+		tools:layout="@layout/fragment_main" >
+		<action
+			android:id="@+id/action_mainFragment_to_sigupFragment"
+			app:destination="@id/sigupFragment" />
+		<action
+			android:id="@+id/action_mainFragment_to_loginFragment"
+			app:destination="@id/loginFragment" />
+		<action
+			android:id="@+id/action_mainFragment_to_infoFragment"
+			app:destination="@id/infoFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/sigupFragment"
+		android:name="com.pontic_studio.myproperty.MainActivity.Fragments.SigupFragment"
+		android:label="fragment_sigup"
+		tools:layout="@layout/fragment_sigup" >
+		<action
+			android:id="@+id/action_sigupFragment_to_mainFragment"
+			app:destination="@id/mainFragment" />
+	</fragment>
+</navigation>
