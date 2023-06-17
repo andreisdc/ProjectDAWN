@@ -18,30 +18,38 @@
         tools:ignore="MissingConstraints" />
 
 
-    <EditText
-        android:id="@+id/logInTextUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        android:hint="Username"
-        android:textColorHint="@color/lightGray"
-        tools:layout_editor_absoluteX="105dp"
-        tools:layout_editor_absoluteY="275dp"
-        tools:ignore="MissingConstraints" />
+	<EditText
+		android:id="@+id/logInTextUsername"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="105dp"
+		android:layout_marginTop="88dp"
+		android:layout_marginEnd="96dp"
+		android:layout_marginBottom="30dp"
+		android:ems="10"
+		android:hint="Username"
+		android:inputType="textPersonName"
+		android:text=""
+		android:textColorHint="@color/lightGray"
+		app:layout_constraintBottom_toTopOf="@+id/logInTextPassword"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/textView"
+		tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/logInTextPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="Password"
-        android:textColorHint="@color/lightGray"
-        tools:layout_editor_absoluteX="105dp"
-        tools:layout_editor_absoluteY="350dp"
-        tools:ignore="MissingConstraints" />
+	<EditText
+		android:id="@+id/logInTextPassword"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="105dp"
+		android:layout_marginTop="30dp"
+		android:ems="10"
+		android:hint="Password"
+		android:inputType="textPassword"
+		android:textColorHint="@color/lightGray"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/logInTextUsername"
+		tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/logInButtonChangeView"
