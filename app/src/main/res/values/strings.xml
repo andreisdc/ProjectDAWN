@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">MyProperty</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="customMessageForClient">                 Hello client.\nPlease fill out the form below to get started</string>
+    <string name="customMessageForClient">Hello client.\nPlease fill out the form below to get started</string>
     <string name="customMessageForOwner">Hello owner.\nPlease fill out the form below to get started</string>
+    <string name="mainInitialMessage">My property</string>
 </resources>

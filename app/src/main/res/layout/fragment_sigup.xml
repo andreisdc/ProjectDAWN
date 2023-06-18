@@ -87,7 +87,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/round_style_for_role_buttons"
         android:backgroundTint="@color/darkblue2"
-        android:src="@drawable/salut"
+        android:src="@drawable/client_image"
         />
 
     <ImageButton

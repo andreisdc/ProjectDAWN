@@ -8,7 +8,8 @@
 		android:id="@+id/infoFragment"
 		android:name="com.pontic_studio.myproperty.MainActivity.Fragments.InfoFragment"
 		android:label="fragment_info"
-		tools:layout="@layout/fragment_info" >
+		tools:layout="@layout/fragment_info"
+		>
 		<action
 			android:id="@+id/action_infoFragment_to_mainFragment"
 			app:destination="@id/mainFragment" />
