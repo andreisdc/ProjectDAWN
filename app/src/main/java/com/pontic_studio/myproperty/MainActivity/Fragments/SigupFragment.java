@@ -23,6 +23,8 @@ import com.pontic_studio.myproperty.DataBaseHelper;
 import com.pontic_studio.myproperty.Models.User;
 import com.pontic_studio.myproperty.R;
 
+import java.util.List;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SigupFragment#newInstance} factory method to
@@ -137,9 +139,12 @@ public class SigupFragment extends Fragment {
 											User user = new User(1,usernameEditText.getText().toString(),passwordEditText.getText().toString(), isOwner);
 											DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
 											boolean succes = 	dataBaseHelper.addOne(user);
-
+											List<User> allUsers = dataBaseHelper.getEveryone();
 											Navigation.findNavController(v).navigate(R.id.mainFragment);
-											Toast.makeText(getActivity(), "SUCCES+ " + succes, Toast.LENGTH_SHORT).show();
+
+
+
+											Toast.makeText(getActivity(), allUsers.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
