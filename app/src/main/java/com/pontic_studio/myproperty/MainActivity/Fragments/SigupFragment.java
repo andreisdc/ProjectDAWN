@@ -1,12 +1,22 @@
 package com.pontic_studio.myproperty.MainActivity.Fragments;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.pontic_studio.myproperty.R;
 
@@ -62,5 +72,60 @@ public class SigupFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sigup, container, false);
+    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        ImageButton button1=view.findViewById(R.id.clientButton);
+        ImageButton button2=view.findViewById(R.id.ownerButton);
+
+        Button button3=view.findViewById(R.id.signInButtonChangeView);
+
+        EditText usernameEditText=view.findViewById(R.id.signupTextUsername);
+        EditText passwordEditText=view.findViewById(R.id.signupTextPassword);
+
+        TextView messageText=view.findViewById(R.id.customMessageTextView);
+
+        ImageView clientImageView=view.findViewById(R.id.clientImageView);
+        ImageView ownerImageView=view.findViewById(R.id.ownerImageView);
+        messageText.setText("");
+        clientImageView.setVisibility(View.INVISIBLE);
+        ownerImageView.setVisibility(View.INVISIBLE);
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                messageText.setText(R.string.customMessageForClient);
+                clientImageView.setVisibility(View.VISIBLE);
+                ownerImageView.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                messageText.setText(R.string.customMessageForOwner);
+                clientImageView.setVisibility(View.INVISIBLE);
+                ownerImageView.setVisibility(View.VISIBLE);
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                messageText.setText(usernameEditText.getText());
+                if(((usernameEditText.getText()).toString()).isEmpty() || ((passwordEditText.getText()).toString()).isEmpty())
+                {
+                    usernameEditText.setHintTextColor(Color.RED);
+                    passwordEditText.setHintTextColor(Color.RED);
+                }
+                else {
+                    if(clientImageView.getVisibility()==View.VISIBLE || ownerImageView.getVisibility()==View.VISIBLE)
+                    {
+                        Navigation.findNavController(v).navigate(R.id.mainFragment);
+                    }
+                }
+            }
+        });
     }
 }
