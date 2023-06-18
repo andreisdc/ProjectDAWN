@@ -17,7 +17,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.pontic_studio.myproperty.DataBaseHelper;
+import com.pontic_studio.myproperty.Models.User;
 import com.pontic_studio.myproperty.R;
 
 /**
@@ -77,10 +80,10 @@ public class SigupFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ImageButton button1=view.findViewById(R.id.clientButton);
-        ImageButton button2=view.findViewById(R.id.ownerButton);
+        ImageButton buttonClinetSelect=view.findViewById(R.id.clientButton);
+        ImageButton buttonOwnerSelect=view.findViewById(R.id.ownerButton);
 
-        Button button3=view.findViewById(R.id.signInButtonChangeView);
+        Button buttonSignUp=view.findViewById(R.id.signInButtonChangeView);
 
         EditText usernameEditText=view.findViewById(R.id.signupTextUsername);
         EditText passwordEditText=view.findViewById(R.id.signupTextPassword);
@@ -93,7 +96,7 @@ public class SigupFragment extends Fragment {
         clientImageView.setVisibility(View.INVISIBLE);
         ownerImageView.setVisibility(View.INVISIBLE);
 
-        button1.setOnClickListener(new View.OnClickListener() {
+			buttonClinetSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 messageText.setText(R.string.customMessageForClient);
@@ -102,7 +105,7 @@ public class SigupFragment extends Fragment {
             }
         });
 
-        button2.setOnClickListener(new View.OnClickListener() {
+			buttonOwnerSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 messageText.setText(R.string.customMessageForOwner);
@@ -110,7 +113,7 @@ public class SigupFragment extends Fragment {
                 ownerImageView.setVisibility(View.VISIBLE);
             }
         });
-        button3.setOnClickListener(new View.OnClickListener() {
+			buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                messageText.setText(usernameEditText.getText());
@@ -122,7 +125,21 @@ public class SigupFragment extends Fragment {
                 else {
                     if(clientImageView.getVisibility()==View.VISIBLE || ownerImageView.getVisibility()==View.VISIBLE)
                     {
-                        Navigation.findNavController(v).navigate(R.id.mainFragment);
+											boolean isOwner;
+											if(clientImageView.getVisibility() == View.VISIBLE)
+											{
+												isOwner = false;
+											}
+											else
+											{
+												isOwner = true;
+											}
+											User user = new User(1,usernameEditText.getText().toString(),passwordEditText.getText().toString(), isOwner);
+											DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
+											boolean succes = 	dataBaseHelper.addOne(user);
+
+											Navigation.findNavController(v).navigate(R.id.mainFragment);
+											Toast.makeText(getActivity(), "SUCCES+ " + succes, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
