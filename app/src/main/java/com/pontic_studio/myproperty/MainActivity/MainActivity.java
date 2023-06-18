@@ -6,6 +6,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Bundle;
 
+import com.pontic_studio.myproperty.Models.User;
 import com.pontic_studio.myproperty.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,6 +15,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
     }
 }
