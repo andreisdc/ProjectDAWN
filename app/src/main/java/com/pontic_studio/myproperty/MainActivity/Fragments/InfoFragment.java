@@ -73,7 +73,7 @@ public class InfoFragment extends Fragment {
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-          
+
             }
         });
     }
