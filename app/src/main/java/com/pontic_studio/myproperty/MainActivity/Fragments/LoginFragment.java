@@ -1,5 +1,6 @@
 package com.pontic_studio.myproperty.MainActivity.Fragments;
 
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,12 +37,20 @@ public class LoginFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+		public static LoginFragment INTERFACE;
+
+
+		public int SALUT;
+
+		public static int ID;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     public LoginFragment() {
         // Required empty public constructor
+			INTERFACE = this;
     }
 
     /**
@@ -91,18 +101,14 @@ public class LoginFragment extends Fragment {
 
 							if(((usernameEditText.getText()).toString()).isEmpty() == false && ((passwordEditText.getText()).toString()).isEmpty() == false)
 							{
-								boolean foundUser = false;
-								DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
-								foundUser = dataBaseHelper.findUser(usernameEditText.getText().toString(), passwordEditText.getText().toString());
 
-								if(foundUser == true)
-								{
-									Toast.makeText(getActivity(), "TRUE", Toast.LENGTH_SHORT).show();
-								}
-								else
-								{
-									Toast.makeText(getActivity(), "FALSE", Toast.LENGTH_SHORT).show();
-								}
+								DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
+								int userID = dataBaseHelper.findUser(usernameEditText.getText().toString(), passwordEditText.getText().toString());
+
+								String user = String.valueOf(userID);
+
+								ID = userID;
+
 							}
 						}
 

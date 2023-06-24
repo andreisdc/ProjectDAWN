@@ -1,6 +1,7 @@
 package com.pontic_studio.myproperty.MainActivity.Fragments;
 
-import android.annotation.SuppressLint;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -20,10 +21,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pontic_studio.myproperty.DataBaseHelper;
+import com.pontic_studio.myproperty.Models.Client;
+import com.pontic_studio.myproperty.Models.Owner;
 import com.pontic_studio.myproperty.Models.User;
 import com.pontic_studio.myproperty.R;
-
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -106,7 +107,6 @@ public class SigupFragment extends Fragment {
                 ownerImageView.setVisibility(View.INVISIBLE);
             }
         });
-
 			buttonOwnerSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,13 +138,10 @@ public class SigupFragment extends Fragment {
 											}
 											User user = new User(1,usernameEditText.getText().toString(),passwordEditText.getText().toString(), isOwner);
 											DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
-											boolean succes = 	dataBaseHelper.addOne(user);
-											List<User> allUsers = dataBaseHelper.getEveryone();
+											SQLiteDatabase db = dataBaseHelper.getWritableDatabase();
+											dataBaseHelper.addOne(user);
+
 											Navigation.findNavController(v).navigate(R.id.mainFragment);
-
-
-
-											Toast.makeText(getActivity(), allUsers.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
