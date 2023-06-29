@@ -1,8 +1,6 @@
 package com.pontic_studio.myproperty.adapter;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,18 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.pontic_studio.myproperty.MainActivity.Fragments.PropertyDetailsFragment;
 import com.pontic_studio.myproperty.Models.Property;
 import com.pontic_studio.myproperty.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PropertyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{

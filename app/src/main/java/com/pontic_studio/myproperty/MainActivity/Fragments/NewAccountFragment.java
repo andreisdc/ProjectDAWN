@@ -1,13 +1,25 @@
 package com.pontic_studio.myproperty.MainActivity.Fragments;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
+import com.pontic_studio.myproperty.ClientActivity.ClientActivity;
+import com.pontic_studio.myproperty.DataBaseHelper;
+import com.pontic_studio.myproperty.Models.Client;
+import com.pontic_studio.myproperty.Models.Owner;
+import com.pontic_studio.myproperty.OwnerActivity.OwnerActivity;
 import com.pontic_studio.myproperty.R;
 
 /**
@@ -17,8 +29,11 @@ import com.pontic_studio.myproperty.R;
  */
 public class NewAccountFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+		EditText nameEditText;
+		EditText surnameEditText;
+
+		Button button;
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -57,10 +72,58 @@ public class NewAccountFragment extends Fragment {
         }
     }
 
+	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+
+		nameEditText = view.findViewById(R.id.newAccountName);
+		surnameEditText = view.findViewById(R.id.newAccountSurname);
+		button = view.findViewById(R.id.buttonAddClient);
+
+		button.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				if(nameEditText.getText().toString().isEmpty() == false && surnameEditText.getText().toString().isEmpty() == false)
+				{
+					DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
+					SQLiteDatabase db = dataBaseHelper.getWritableDatabase();
+
+					if(dataBaseHelper.getStatusUser(LoginFragment.ID) == false)
+					{
+						Client client = new Client(1, nameEditText.getText().toString(), surnameEditText.getText().toString(), LoginFragment.ID);
+						dataBaseHelper.addOne(client);
+						Navigation.findNavController(v).navigate(R.id.loginFragment);
+
+						Intent intent = new Intent(getContext(), ClientActivity.class);
+						startActivity(intent);
+
+					}else
+					{
+						Owner owner = new Owner(1, nameEditText.getText().toString(), surnameEditText.getText().toString(), LoginFragment.ID);
+						dataBaseHelper.addOne(owner);
+						Navigation.findNavController(v).navigate(R.id.loginFragment);
+
+						Intent intent = new Intent(getContext(), OwnerActivity.class);
+						startActivity(intent);
+					}
+
+
+
+				}
+
+			}
+		});
+
+
+
+
+	}
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_new_account, container, false);
+
     }
 }

@@ -15,23 +15,13 @@
 			app:destination="@id/mainFragment" />
 	</fragment>
 	<fragment
-		android:id="@+id/propertyFragment"
-		android:name="com.pontic_studio.myproperty.MainActivity.Fragments.PropertyFragment"
-		android:label="fragment_property"
-		tools:layout="@layout/fragment_property"
-		>
-		<action
-			android:id="@+id/action_propertyFragment_to_propertyDetailsFragment"
-			app:destination="@id/propertyDetailsFragment" />
-	</fragment>
-	<fragment
 		android:id="@+id/loginFragment"
 		android:name="com.pontic_studio.myproperty.MainActivity.Fragments.LoginFragment"
 		android:label="fragment_login"
 		tools:layout="@layout/fragment_login" >
 		<action
-			android:id="@+id/action_LogInFragment_to_propertyFragment"
-			app:destination="@id/propertyFragment" />
+			android:id="@+id/action_loginFragment_to_newAccountFragment"
+			app:destination="@id/newAccountFragment" />
 	</fragment>
 
 	<fragment
@@ -59,15 +49,12 @@
 			app:destination="@id/mainFragment" />
 	</fragment>
 	<fragment
-		android:id="@+id/propertyDetailsFragment"
-		android:name="com.pontic_studio.myproperty.MainActivity.Fragments.PropertyDetailsFragment"
-		android:label="fragment_property_details"
-		tools:layout="@layout/fragment_property_details" >
+		android:id="@+id/newAccountFragment"
+		android:name="com.pontic_studio.myproperty.MainActivity.Fragments.NewAccountFragment"
+		android:label="fragment_new_account"
+		tools:layout="@layout/fragment_new_account" >
 		<action
-			android:id="@+id/action_propertyDetailsFragment_to_propertyFragment"
-			app:destination="@id/propertyFragment" />
-		<argument
-			android:name="message"
-			app:argType="string" />
+			android:id="@+id/action_newAccountFragment_to_mainFragment"
+			app:destination="@id/mainFragment" />
 	</fragment>
 </navigation>
