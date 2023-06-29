@@ -1,4 +1,4 @@
-package com.pontic_studio.myproperty.MainActivity.Fragments;
+package com.pontic_studio.myproperty.ClientActivity;
 
 import android.os.Bundle;
 
@@ -26,7 +26,7 @@ public class PropertyDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_property_details, container, false);
-        image=rootView.findViewById(R.id.detailsImageView); 
+        image=rootView.findViewById(R.id.detailsImageView);
         name = rootView.findViewById(R.id.deatilsPropertyName);
         price= rootView.findViewById(R.id.deatilsPropertyPrice);
         adress= rootView.findViewById(R.id.deatilsPropertyAdress);

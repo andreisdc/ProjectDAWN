@@ -29,6 +29,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	private static final String CLIENT_TABLE = "CLIENT_TABLE";
 	private static final String COLUMN_CLIENT_NAME = "CLIENT_NAME";
 	private static final String COLUMN_CLIENT_SURNAME = "CLIENT_SURNAME";
+
 	private static final String COLUMN_CLIENT_ID = "ID";
 	private static final String COLUMN_USER_ID = "ID_USER";
 
@@ -68,6 +69,21 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		}
 
 	}
+
+
+	public boolean getStatusUser(int id) {
+		SQLiteDatabase database = getWritableDatabase();
+
+		// Construirea interogării SQL
+		String sql = "SELECT * FROM " + USER_TABLE + " WHERE " + COLUMN_ID + " = " + id
+			+ " AND " + COLUMN_USER_ISOWNER + " = 1"; // Verificați dacă isOwner este 1 (adevărat)
+
+		Cursor cursor = database.rawQuery(sql, null);
+		boolean isOwner = cursor.getCount() > 0; // Verificați dacă există cel puțin un rând rezultat
+
+		return isOwner;
+	}
+
 
 	public boolean addOne(User user){
 		SQLiteDatabase db = this.getWritableDatabase();
@@ -162,6 +178,37 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 			return -1; // Utilizatorul nu a fost găsit
 		}
 	}
+
+
+
+	public int findClientByUserID(int id) {
+		SQLiteDatabase database = getWritableDatabase();
+		String sql = "SELECT * FROM " + CLIENT_TABLE + " WHERE " + COLUMN_USER_ID + " = " + id;
+		Cursor cursor = database.rawQuery(sql, null);
+		// cursor.moveToFirst();
+		if (cursor.moveToFirst()) {
+			int idColumnIndex = cursor.getColumnIndex(COLUMN_ID);
+			return cursor.getInt(idColumnIndex);
+		} else {
+			return -1; // Clientul nu a fost găsit
+		}
+	}
+
+	public int findOwnerByUserId(int id) {
+		SQLiteDatabase database = getWritableDatabase();
+		String sql = "SELECT * FROM " + OWNER_TABLE + " WHERE " + COLUMN_USER_ID + " = " + id;
+		Cursor cursor = database.rawQuery(sql, null);
+		// cursor.moveToFirst();
+		if (cursor.moveToFirst()) {
+			int idColumnIndex = cursor.getColumnIndex(COLUMN_ID);
+			return cursor.getInt(idColumnIndex);
+		} else {
+			return -1; // Clientul nu a fost găsit
+		}
+	}
+
+
+
 
 	@SuppressLint("Range")
 	public int getLastInsertedUserId() {

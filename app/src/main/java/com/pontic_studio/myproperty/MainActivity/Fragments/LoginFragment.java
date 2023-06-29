@@ -1,5 +1,6 @@
 package com.pontic_studio.myproperty.MainActivity.Fragments;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,8 +22,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pontic_studio.myproperty.ClientActivity.ClientActivity;
 import com.pontic_studio.myproperty.DataBaseHelper;
+import com.pontic_studio.myproperty.MainActivity.MainActivity;
 import com.pontic_studio.myproperty.Models.User;
+import com.pontic_studio.myproperty.OwnerActivity.OwnerActivity;
 import com.pontic_studio.myproperty.R;
 
 /**
@@ -38,9 +42,6 @@ public class LoginFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
 		public static LoginFragment INTERFACE;
-
-
-		public int SALUT;
 
 		public static int ID;
 
@@ -106,6 +107,30 @@ public class LoginFragment extends Fragment {
 								DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
 								int userID = dataBaseHelper.findUser(usernameEditText.getText().toString(), passwordEditText.getText().toString());
 
+								if(userID != -1)
+								{
+									int clientID = dataBaseHelper.findClientByUserID(userID);
+									int ownerID = dataBaseHelper.findOwnerByUserId(userID);
+									if(clientID != -1) {
+										ID = userID;
+										Navigation.findNavController(v).navigate(R.id.loginFragment);
+										Intent intent = new Intent(getContext(), ClientActivity.class);
+										startActivity(intent);
+									}else if(ownerID != -1)
+									{
+										ID = userID;
+										Navigation.findNavController(v).navigate(R.id.loginFragment);
+										Intent intent = new Intent(getContext(), OwnerActivity.class);
+										startActivity(intent);
+
+									}
+									else {
+										Navigation.findNavController(v).navigate(R.id.newAccountFragment);
+									}
+								}
+
+
+
 								String user = String.valueOf(userID);
 
 								ID = userID;
@@ -114,12 +139,6 @@ public class LoginFragment extends Fragment {
 						}
 
         });
-        buttonNoAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.propertyFragment);
-            }
 
-        });
     }
 }

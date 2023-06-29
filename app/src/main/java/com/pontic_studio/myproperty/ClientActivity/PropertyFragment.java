@@ -1,4 +1,4 @@
-package com.pontic_studio.myproperty.MainActivity.Fragments;
+package com.pontic_studio.myproperty.ClientActivity;
 
 import android.os.Bundle;
 
@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.pontic_studio.myproperty.Models.Client;
 import com.pontic_studio.myproperty.Models.Property;
 import com.pontic_studio.myproperty.R;
 import com.pontic_studio.myproperty.adapter.PropertyAdapter;
@@ -27,6 +28,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PropertyFragment extends Fragment {
+
+		Client client;
 
     private RecyclerView recyclerView;
     private PropertyAdapter adapter;
@@ -52,19 +55,7 @@ public class PropertyFragment extends Fragment {
         recyclerView = view.findViewById(R.id.propertyRecycleView);
 
         List<Property> movies = new ArrayList<>();
-        movies.add(new Property("Casa1","Alex","Sighisoara", "200","liber",false,"Descriere1"));
-        movies.add(new Property("Casa2","Andrei","Constanta", "300","liber",false,"Descriere2"));
-        movies.add(new Property("Casa3","Denis","Brasov", "100","ocupat",false,"Descriere3"));
-        movies.add(new Property("Casa4","Mihai","Bucuresti", "500","ocupat",true,"Descriere4"));
-        movies.add(new Property("Casa4","Mihai","Bucuresti", "500","ocupat",true,"Descriere4"));
-        movies.add(new Property("Casa4","Mihai","Bucuresti", "500","ocupat",true,"Descriere4"));
-        movies.add(new Property("Casa4","Mihai","Bucuresti", "500","ocupat",true,"Descriere4"));
-        movies.add(new Property("Casa4","Mihai","Bucuresti", "500","ocupat",true,"Descriere4"));
-        movies.add(new Property("Casa4","Mihai","Bucuresti", "500","ocupat",true,"Descriere4"));
-        movies.add(new Property("Casa4","Mihai","Bucuresti", "500","ocupat",true,"Descriere4"));
-        movies.add(new Property("Casa4","Mihai","Bucuresti", "500","ocupat",true,"Descriere4"));
-
-        PropertyAdapter adapter = new PropertyAdapter(movies);
+       PropertyAdapter adapter = new PropertyAdapter(movies);
 
         recyclerView.setAdapter(adapter);
 
