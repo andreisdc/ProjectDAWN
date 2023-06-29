@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="status_spinner_items">
+        <item>Liber</item>
+        <item>Ocupat</item>
+    </string-array>
+    <string-array name="type_spinner_items">
+        <item>Casa</item>
+        <item>Apartament</item>
+    </string-array>
+</resources>
