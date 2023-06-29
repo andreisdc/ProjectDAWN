@@ -15,10 +15,25 @@
 			app:destination="@id/mainFragment" />
 	</fragment>
 	<fragment
+		android:id="@+id/propertyFragment"
+		android:name="com.pontic_studio.myproperty.MainActivity.Fragments.PropertyFragment"
+		android:label="fragment_property"
+		tools:layout="@layout/fragment_property"
+		>
+		<action
+			android:id="@+id/action_propertyFragment_to_propertyDetailsFragment"
+			app:destination="@id/propertyDetailsFragment" />
+	</fragment>
+	<fragment
 		android:id="@+id/loginFragment"
 		android:name="com.pontic_studio.myproperty.MainActivity.Fragments.LoginFragment"
 		android:label="fragment_login"
-		tools:layout="@layout/fragment_login" />
+		tools:layout="@layout/fragment_login" >
+		<action
+			android:id="@+id/action_LogInFragment_to_propertyFragment"
+			app:destination="@id/propertyFragment" />
+	</fragment>
+
 	<fragment
 		android:id="@+id/mainFragment"
 		android:name="com.pontic_studio.myproperty.MainActivity.Fragments.MainFragment"
@@ -42,5 +57,17 @@
 		<action
 			android:id="@+id/action_sigupFragment_to_mainFragment"
 			app:destination="@id/mainFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/propertyDetailsFragment"
+		android:name="com.pontic_studio.myproperty.MainActivity.Fragments.PropertyDetailsFragment"
+		android:label="fragment_property_details"
+		tools:layout="@layout/fragment_property_details" >
+		<action
+			android:id="@+id/action_propertyDetailsFragment_to_propertyFragment"
+			app:destination="@id/propertyFragment" />
+		<argument
+			android:name="message"
+			app:argType="string" />
 	</fragment>
 </navigation>
