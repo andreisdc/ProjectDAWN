@@ -91,6 +91,7 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button buttonLogin=view.findViewById(R.id.loginButtonChangeView);
+        Button buttonNoAccount=view.findViewById(R.id.loginNoAccountButtonChangeView);
 
         EditText usernameEditText=view.findViewById(R.id.loginEditTextUsername);
         EditText passwordEditText=view.findViewById(R.id.loginEditTextPassword);
@@ -111,6 +112,13 @@ public class LoginFragment extends Fragment {
 
 							}
 						}
+
+        });
+        buttonNoAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.propertyFragment);
+            }
 
         });
     }

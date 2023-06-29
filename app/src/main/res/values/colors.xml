@@ -12,5 +12,7 @@
     <color name="darkblue">#0a78ff</color>
     <color name="darkblue2">#0a00e2</color>
     <color name="lightGray">#68686b</color>
-    <color name="red">#72ff18</color>
+    <color name="red">#fe1207</color>
+    <color name="purple2">#c049ca</color>
+    <color name="green">#40fe3d</color>
 </resources>
