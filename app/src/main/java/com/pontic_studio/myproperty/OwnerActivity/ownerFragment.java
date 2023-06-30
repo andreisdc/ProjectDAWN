@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.pontic_studio.myproperty.DataBaseHelper;
 import com.pontic_studio.myproperty.Models.Property;
@@ -33,6 +34,7 @@ public class ownerFragment extends Fragment {
 	private RecyclerView recyclerView;
 	private PropertyAdapter adapter;
 	private GridLayoutManager layoutManager;
+	private TextView message;
 	Button addButton;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -86,6 +88,9 @@ public class ownerFragment extends Fragment {
 		String ownerName = dataBaseHelper.getOwnerNameByID(LoginFragment.ID);
 		listOfProperty = dataBaseHelper.getPropertiesByID(ownerName);
 		PropertyAdapterOwner adapter = new PropertyAdapterOwner(listOfProperty);
+
+		message=view.findViewById(R.id.messageTextView);
+		message.setText("Hello "+ownerName+"\nThis is your properties:");
 
 		recyclerView.setAdapter(adapter);
 

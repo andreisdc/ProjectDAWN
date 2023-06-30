@@ -91,54 +91,54 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button buttonLogin=view.findViewById(R.id.loginButtonChangeView);
-        Button buttonNoAccount=view.findViewById(R.id.loginNoAccountButtonChangeView);
+        Button buttonLogin = view.findViewById(R.id.loginButtonChangeView);
+        Button buttonNoAccount = view.findViewById(R.id.loginNoAccountButtonChangeView);
 
-        EditText usernameEditText=view.findViewById(R.id.loginEditTextUsername);
-        EditText passwordEditText=view.findViewById(R.id.loginEditTextPassword);
+        EditText usernameEditText = view.findViewById(R.id.loginEditTextUsername);
+        EditText passwordEditText = view.findViewById(R.id.loginEditTextPassword);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-							if(((usernameEditText.getText()).toString()).isEmpty() == false && ((passwordEditText.getText()).toString()).isEmpty() == false)
-							{
+                if (((usernameEditText.getText()).toString()).isEmpty() == false && ((passwordEditText.getText()).toString()).isEmpty() == false) {
 
-								DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
-								int userID = dataBaseHelper.findUser(usernameEditText.getText().toString(), passwordEditText.getText().toString());
+                    DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
+                    int userID = dataBaseHelper.findUser(usernameEditText.getText().toString(), passwordEditText.getText().toString());
 
-								if(userID != -1)
-								{
-									int clientID = dataBaseHelper.findClientByUserID(userID);
-									int ownerID = dataBaseHelper.findOwnerByUserId(userID);
-									if(clientID != -1) {
-										ID = userID;
-										Navigation.findNavController(v).navigate(R.id.loginFragment);
-										Intent intent = new Intent(getContext(), ClientActivity.class);
-										startActivity(intent);
-									}else if(ownerID != -1)
-									{
-										ID = 2;
-										Navigation.findNavController(v).navigate(R.id.loginFragment);
-										Intent intent = new Intent(getContext(), OwnerActivity.class);
-										startActivity(intent);
+                    if (userID != -1) {
+                        int clientID = dataBaseHelper.findClientByUserID(userID);
+                        int ownerID = dataBaseHelper.findOwnerByUserId(userID);
+                        if (clientID != -1) {
+                            ID = userID;
+                            Navigation.findNavController(v).navigate(R.id.loginFragment);
+                            Intent intent = new Intent(getContext(), ClientActivity.class);
+                            startActivity(intent);
+                        } else if (ownerID != -1) {
+                            ID = 2;
+                            Navigation.findNavController(v).navigate(R.id.loginFragment);
+                            Intent intent = new Intent(getContext(), OwnerActivity.class);
+                            startActivity(intent);
 
-									}
-									else {
-										Navigation.findNavController(v).navigate(R.id.newAccountFragment);
-									}
-								}
+                        } else {
+                            Navigation.findNavController(v).navigate(R.id.newAccountFragment);
+                        }
+                    }
 
 
+                    String user = String.valueOf(userID);
 
-								String user = String.valueOf(userID);
+                    ID = userID;
 
-								ID = userID;
-
-							}
-						}
+                }
+            }
 
         });
-
+        buttonNoAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.sigupFragment);
+            }
+            });
     }
 }

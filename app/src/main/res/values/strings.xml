@@ -6,4 +6,5 @@
     <string name="mainInitialMessage">My property</string>
     <string name="newAccountTitle">Personal\ndetails</string>
     <string name="newAccountMessage">Hello new user!\nWelcome to our application, please fill out\nthe form below. </string>
+    <string name="creators">Creators:\nAlexandru Edves\nAndrei-Alexandru Samulescu </string>
 </resources>
