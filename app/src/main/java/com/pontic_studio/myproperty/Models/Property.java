@@ -70,12 +70,8 @@ public class Property {
         this.status = status;
     }
 
-    public boolean isType() {
-        if(type == "Casa")
-				{
-					return false;
-				}else
-					return true;
+    public String isType() {
+        return type;
     }
 
     public void setType(String type) {

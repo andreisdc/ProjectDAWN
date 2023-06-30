@@ -125,24 +125,26 @@ public class SigupFragment extends Fragment {
                     passwordEditText.setHintTextColor(Color.RED);
                 }
                 else {
-                    if(clientImageView.getVisibility()==View.VISIBLE || ownerImageView.getVisibility()==View.VISIBLE)
-                    {
-											boolean isOwner;
-											if(clientImageView.getVisibility() == View.VISIBLE)
-											{
-												isOwner = false;
-											}
-											else
-											{
-												isOwner = true;
-											}
-											User user = new User(1,usernameEditText.getText().toString(),passwordEditText.getText().toString(), isOwner);
+                    if(clientImageView.getVisibility()==View.VISIBLE || ownerImageView.getVisibility()==View.VISIBLE) {
 											DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
 											SQLiteDatabase db = dataBaseHelper.getWritableDatabase();
-											dataBaseHelper.addOne(user);
 
-											Navigation.findNavController(v).navigate(R.id.mainFragment);
-                    }
+											int validUser = dataBaseHelper.findUser(usernameEditText.getText().toString(), passwordEditText.getText().toString());
+
+											if (validUser == -1) {
+												boolean isOwner;
+												if (clientImageView.getVisibility() == View.VISIBLE) {
+													isOwner = false;
+												} else {
+													isOwner = true;
+												}
+												User user = new User(1, usernameEditText.getText().toString(), passwordEditText.getText().toString(), isOwner);
+
+												dataBaseHelper.addOne(user);
+
+												Navigation.findNavController(v).navigate(R.id.mainFragment);
+											}
+										}
                 }
             }
         });
