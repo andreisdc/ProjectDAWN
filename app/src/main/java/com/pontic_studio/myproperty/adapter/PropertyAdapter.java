@@ -80,7 +80,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     Bundle bundle = new Bundle();
                     bundle.putString("property_name", movieModel.getPropertyName());
                     bundle.putString("property_price",movieModel.getPrice());
-                    bundle.putString("property_adress", movieModel.getAdress());
+                    bundle.putString("property_adress", movieModel.getAddress());
                     bundle.putString("property_owner", movieModel.getOwnerName());
                     bundle.putString("property_description", movieModel.getDescription());
                     bundle.putString("property_status", movieModel.getStatus());
@@ -124,7 +124,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             propertyNameTextView.setText(movieModel.getPropertyName());
             propertyPriceTextView.setText(movieModel.getPrice()+" euro");
-            propertyAdressTextView.setText(movieModel.getAdress());
+            propertyAdressTextView.setText(movieModel.getAddress());
             ownerNameTextView.setText(movieModel.getOwnerName());
         }
     }
