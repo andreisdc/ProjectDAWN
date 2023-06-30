@@ -1,18 +1,21 @@
 package com.pontic_studio.myproperty.Models;
 
 public class Property {
+
+		int ID;
     String propertyName;
     String ownerName;
-    String adress;
+    String address;
     String price;
     String status;
-    boolean type;
+    String type;
     String description;
 
-    public Property(String propertyName, String ownerName, String adress, String price, String status, boolean type, String description) {
+    public Property(int id, String propertyName, String ownerName, String adress, String price, String status, String type, String description) {
+				this.ID = id;
         this.propertyName = propertyName;
         this.ownerName = ownerName;
-        this.adress = adress;
+        this.address = adress;
         this.price = price;
         this.status = status;
         this.type = type;
@@ -43,12 +46,12 @@ public class Property {
         this.ownerName = ownerName;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String adress) {
+        this.address = adress;
     }
 
     public String getPrice() {
@@ -68,10 +71,14 @@ public class Property {
     }
 
     public boolean isType() {
-        return type;
+        if(type == "Casa")
+				{
+					return false;
+				}else
+					return true;
     }
 
-    public void setType(boolean type) {
+    public void setType(String type) {
         this.type = type;
     }
 

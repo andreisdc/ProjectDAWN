@@ -118,7 +118,7 @@ public class LoginFragment extends Fragment {
 										startActivity(intent);
 									}else if(ownerID != -1)
 									{
-										ID = userID;
+										ID = 2;
 										Navigation.findNavController(v).navigate(R.id.loginFragment);
 										Intent intent = new Intent(getContext(), OwnerActivity.class);
 										startActivity(intent);

@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:id="@+id/navigation_owner">
-
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/navigation_owner"
+	app:startDestination="@id/ownerFragment4">
+	<fragment
+		android:id="@+id/ownerFragment4"
+		android:name="com.pontic_studio.myproperty.OwnerActivity.ownerFragment"
+		android:label="fragment_owner"
+		tools:layout="@layout/fragment_owner" >
+		<action
+			android:id="@+id/action_ownerFragment4_to_addNewProperty2"
+			app:destination="@id/addNewProperty2" />
+	</fragment>
+	<fragment
+		android:id="@+id/addNewProperty2"
+		android:name="com.pontic_studio.myproperty.OwnerActivity.AddNewProperty"
+		android:label="fragment_add_new_property"
+		tools:layout="@layout/fragment_add_new_property" >
+		<action
+			android:id="@+id/action_addNewProperty2_to_ownerFragment4"
+			app:destination="@id/ownerFragment4" />
+	</fragment>
 </navigation>

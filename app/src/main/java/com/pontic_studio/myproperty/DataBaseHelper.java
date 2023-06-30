@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.pontic_studio.myproperty.Models.Client;
 import com.pontic_studio.myproperty.Models.Owner;
+import com.pontic_studio.myproperty.Models.Property;
 import com.pontic_studio.myproperty.Models.User;
 
 import java.util.ArrayList;
@@ -37,7 +38,30 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	private static final String OWNER_TABLE = "OWNER_TABLE";
 	private static final String COLUMN_OWNER_NAME = "OWNER_NAME";
 	private static final String COLUMN_OWNER_SURNAME = "CLIENT_SURNAME";
+
 	private static final String COLUMN_OWNER_ID = "ID";
+
+
+	//Tabelul de Properties
+
+	private static final String PROPERTY_TABLE = "PROPERTY_TABLE";
+
+	private static final String COLUMN_PROPERTY_NAME = "PROPERTY_NAME";
+
+	private static final String COLUMN_PROPERTY_OWNER_NAME = "PROPERTY_OWNER_ONAME";
+
+	private static final String COLUMN_PROPERTY_ADDRESS = "PROPERTY_ADDRESS";
+
+	private static final String COLUMN_PROPERTY_PRICE = "PROPERTY_PRICE";
+
+	private static final String COLUMN_PROPERTY_TYPE = "PROPERTY_TYPE";
+
+	private static final String COLUMN_PROPERTY_STATUS = "PROPERTY_STATUS";
+	private static final String COLUMN_PROPERTY_DESCRIPTION = "PROPERTY_DESCRIPTION";
+
+	private static final String COLUMN_PROPERTY_ID = "PROPERTY_ID";
+
+
 
 
 	public DataBaseHelper(@Nullable Context context) {
@@ -49,26 +73,46 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 		String createTableStatement = "CREATE TABLE " + USER_TABLE + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_USER_USERNAME + " TEXT, " + COLUMN_USER_PASSWORD + " TEXT, " + COLUMN_USER_ISOWNER + " BOOL)";
 		db.execSQL(createTableStatement);
-
-
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
 
-		if(oldVersion < 7)
+		if(oldVersion < 8)
 		{
-			String createTableStatement = "CREATE TABLE " +  OWNER_TABLE  + "(" +
-				COLUMN_OWNER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-				COLUMN_OWNER_NAME + " TEXT, " +
-				COLUMN_OWNER_SURNAME + " TEXT, " +
-				COLUMN_USER_ID + " INTEGER, " +
-				"FOREIGN KEY(" + COLUMN_USER_ID + ") REFERENCES " + USER_TABLE + "(" + COLUMN_ID + "))";
+			String createTableStatement = "CREATE TABLE " +  PROPERTY_TABLE  + "(" +
+				COLUMN_PROPERTY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+				COLUMN_PROPERTY_STATUS + " TEXT, " +
+				COLUMN_PROPERTY_NAME + " TEXT, " +
+				COLUMN_PROPERTY_PRICE + " TEXT, " +
+				COLUMN_PROPERTY_DESCRIPTION + " TEXT, " +
+				COLUMN_PROPERTY_ADDRESS + " TEXT, " +
+				COLUMN_PROPERTY_TYPE + " TEXT, " +
+				COLUMN_PROPERTY_OWNER_NAME + " TEXT )";
 			db.execSQL(createTableStatement);
 		}
 
 	}
+
+	public String getOwnerNameByID(int id) {
+		SQLiteDatabase database = getReadableDatabase();
+		String[] columns = {COLUMN_OWNER_NAME};
+		String selection = COLUMN_OWNER_ID + " = ?";
+		String[] selectionArgs = {String.valueOf(id)};
+		Cursor cursor = database.query(OWNER_TABLE, columns, selection, selectionArgs, null, null, null);
+
+		if (cursor.moveToFirst()) {
+			@SuppressLint("Range") String ownerName = cursor.getString(cursor.getColumnIndex(COLUMN_OWNER_NAME));
+			cursor.close(); // Închide cursorul după utilizare
+			return ownerName;
+		}
+
+		cursor.close(); // Închide cursorul în cazul în care nu s-a găsit niciun rezultat
+		return null;
+	}
+
+
 
 
 	public boolean getStatusUser(int id) {
@@ -99,6 +143,28 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		}
 		else{
 		return true;
+		}
+	}
+
+	public boolean addOne(Property property){
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put(COLUMN_PROPERTY_ADDRESS, property.getAddress());
+		cv.put(COLUMN_PROPERTY_OWNER_NAME, property.getOwnerName());
+		cv.put(COLUMN_PROPERTY_NAME, property.getPropertyName());
+		cv.put(COLUMN_PROPERTY_PRICE, property.getPrice());
+		cv.put(COLUMN_PROPERTY_DESCRIPTION, property.getDescription());
+		cv.put(COLUMN_PROPERTY_TYPE, property.isType());
+		cv.put(COLUMN_PROPERTY_STATUS, property.getStatus());
+
+		long insert = db.insert(PROPERTY_TABLE,null , cv);
+
+		if(insert == -1)
+		{
+			return false;
+		}
+		else{
+			return true;
 		}
 	}
 	public boolean addOne(Client client){
