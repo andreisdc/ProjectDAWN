@@ -35,6 +35,7 @@ public class PropertyFragment extends Fragment {
     private RecyclerView recyclerView;
     private PropertyAdapter adapter;
     private GridLayoutManager layoutManager;
+    private TextView message;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,8 +59,9 @@ public class PropertyFragment extends Fragment {
         List<Property> listOfProperty = new ArrayList<>();
 				listOfProperty = dataBaseHelper.getProperties();
        PropertyAdapter adapter = new PropertyAdapter(listOfProperty);
-
         recyclerView.setAdapter(adapter);
+
+        message.setText("Hello!\nThese are all available properties:");
 
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager=new GridLayoutManager(requireContext(), 2);

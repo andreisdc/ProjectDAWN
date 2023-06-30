@@ -1,9 +1,11 @@
 package com.pontic_studio.myproperty.MainActivity.Fragments;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -70,6 +72,14 @@ public class MainFragment extends Fragment {
 	@Override
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
+
+        ConstraintLayout constraintLayout=view.findViewById(R.id.mainPageFragment);
+
+        AnimationDrawable animationDrawable=(AnimationDrawable) constraintLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(2500);
+        animationDrawable.setExitFadeDuration(5000);
+        animationDrawable.start();
+
 
 		Button button1 = view.findViewById(R.id.logInButtonChangeView);
 		Button button2 = view.findViewById(R.id.infoButtonChangeView);

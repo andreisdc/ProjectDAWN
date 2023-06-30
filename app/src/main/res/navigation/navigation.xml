@@ -22,6 +22,9 @@
 		<action
 			android:id="@+id/action_loginFragment_to_newAccountFragment"
 			app:destination="@id/newAccountFragment" />
+		<action
+			android:id="@+id/action_loginFragment_to_sigupFragment"
+			app:destination="@id/sigupFragment" />
 	</fragment>
 
 	<fragment

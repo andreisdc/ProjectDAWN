@@ -48,7 +48,7 @@ public class PropertyDetailsFragment extends Fragment {
         adress.setText(adresa);
         owner.setText(owner2);
         description.setText(description2);
-        if(status.equals("ocupat"))
+        if(status.equals("Ocupat"))
         {
             reserveButton.setEnabled(false);
         }
