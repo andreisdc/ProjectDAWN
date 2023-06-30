@@ -60,7 +60,7 @@ public class PropertyFragment extends Fragment {
 				listOfProperty = dataBaseHelper.getProperties();
        PropertyAdapter adapter = new PropertyAdapter(listOfProperty);
         recyclerView.setAdapter(adapter);
-
+				message = view.findViewById(R.id.messageTextView);
         message.setText("Hello!\nThese are all available properties:");
 
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
