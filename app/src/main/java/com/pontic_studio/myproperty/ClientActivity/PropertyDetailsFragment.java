@@ -41,7 +41,7 @@ public class PropertyDetailsFragment extends Fragment {
         String owner2 = bundle != null ? bundle.getString("property_owner") : null;
         String description2 = bundle != null ? bundle.getString("propeerty_description") : null;
         String status = bundle != null ? bundle.getString("property_status") : null;
-        Boolean type=  bundle != null ? bundle.getBoolean("property_type") : null;
+        String type=  bundle != null ? bundle.getString("property_type") : null;
 
         name.setText(numeProprietate);
         price.setText(pret);
@@ -52,7 +52,7 @@ public class PropertyDetailsFragment extends Fragment {
         {
             reserveButton.setEnabled(false);
         }
-        if(type)
+        if(!type.equals("Casa"))
         {
             image.setImageResource(R.drawable.building_image);
         }

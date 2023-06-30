@@ -17,11 +17,11 @@ import com.pontic_studio.myproperty.R;
 
 import java.util.List;
 
-public class PropertyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class PropertyAdapterOwner extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private List<Property> movies;
     private int itemsPerRow;
 
-    public PropertyAdapter(List<Property> movies) {
+    public PropertyAdapterOwner(List<Property> movies) {
         this.movies = movies;
         this.itemsPerRow=2;
     }
@@ -89,7 +89,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 //                    String message = movieModel.getPropertyName();
 //                    Bundle bundle = new Bundle();
 //                    bundle.putString("message", message);
-                    navController.navigate(R.id.propertyDetailsFragment, bundle);
+                    navController.navigate(R.id.propertyDetailsFragment2, bundle);
                 }
             });
         }
@@ -101,6 +101,8 @@ public class PropertyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public int getItemCount() {
         return movies.size();
     }
+
+
 
     class MovieViewHolder extends RecyclerView.ViewHolder {
 

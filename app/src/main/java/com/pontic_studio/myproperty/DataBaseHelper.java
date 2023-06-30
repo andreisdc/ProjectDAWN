@@ -95,12 +95,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 	}
 
+
 	public String getOwnerNameByID(int id) {
 		SQLiteDatabase database = getReadableDatabase();
-		String[] columns = {COLUMN_OWNER_NAME};
-		String selection = COLUMN_OWNER_ID + " = ?";
-		String[] selectionArgs = {String.valueOf(id)};
-		Cursor cursor = database.query(OWNER_TABLE, columns, selection, selectionArgs, null, null, null);
+		String query = "SELECT OWNER_NAME FROM OWNER_TABLE WHERE ID_USER = " + id;
+		Cursor cursor = database.rawQuery(query, null);
 
 		if (cursor.moveToFirst()) {
 			@SuppressLint("Range") String ownerName = cursor.getString(cursor.getColumnIndex(COLUMN_OWNER_NAME));
@@ -232,6 +231,79 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		return allUsers;
 	}
 
+
+
+	public List<Property> getProperties()
+	{
+		List<Property> allProperties = new ArrayList<>();
+
+		String querryString = "SELECT * FROM " + PROPERTY_TABLE;
+
+		SQLiteDatabase db = this.getReadableDatabase();
+
+		Cursor cursor = db.rawQuery(querryString, null);
+
+		if(cursor.moveToFirst())
+		{
+			do{
+				int propertyID = cursor.getInt(0);
+				String status = cursor.getString(1);
+				String name = cursor.getString(2);
+				String price = cursor.getString(3);
+				String description = cursor.getString(4);
+				String address = cursor.getString(5);
+				String type = cursor.getString(6) ;
+				String owner_name = cursor.getString(7);
+
+				Property property = new Property(propertyID,name,owner_name,address,price,status,type,description);
+				allProperties.add(property);
+
+			}while(cursor.moveToNext());
+
+
+		}else{
+
+		}
+
+		return allProperties;
+	}
+
+	public List<Property> getPropertiesByID(String ownerName)
+	{
+		List<Property> allProperties = new ArrayList<>();
+
+		String querryString = "SELECT * FROM " + PROPERTY_TABLE + " WHERE " + COLUMN_PROPERTY_OWNER_NAME + " = '" + ownerName + "'";
+		SQLiteDatabase db = this.getReadableDatabase();
+
+		Cursor cursor = db.rawQuery(querryString, null);
+
+		if(cursor.moveToFirst())
+		{
+			do{
+					int propertyID = cursor.getInt(0);
+					String status = cursor.getString(1);
+					String name = cursor.getString(2);
+					String price = cursor.getString(3);
+					String description = cursor.getString(4);
+					String address = cursor.getString(5);
+					String type = cursor.getString(6);
+					String owner_name = cursor.getString(7);
+
+					Property property = new Property(propertyID, name, owner_name, address, price, status, type, description);
+					allProperties.add(property);
+
+			}while(cursor.moveToNext());
+
+
+		}else{
+
+		}
+
+		return allProperties;
+	}
+
+
+
 	public int findUser(String username, String password) {
 		SQLiteDatabase database = getWritableDatabase();
 		String sql = "SELECT * FROM " + USER_TABLE + " WHERE " + COLUMN_USER_USERNAME + " = '" + username + "' AND " + COLUMN_USER_PASSWORD + " = '" + password + "'";
@@ -294,6 +366,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		db.delete(USER_TABLE, null, null); // Șterge toate înregistrările din tabela USER_TABLE
 		db.delete(CLIENT_TABLE, null, null); // Șterge toate înregistrările din tabela CLIENT_TABLE
 		db.delete(OWNER_TABLE, null, null); // Șterge toate înregistrările din tabela OWNER_TABLE
+		db.delete(PROPERTY_TABLE, null, null); //Șterge toate înregistrările din tabela PROPERTY_TABLE
 
 	}
 

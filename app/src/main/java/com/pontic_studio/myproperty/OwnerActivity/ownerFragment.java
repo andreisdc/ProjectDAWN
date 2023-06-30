@@ -6,13 +6,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.pontic_studio.myproperty.MainActivity.Fragments.LoginFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.pontic_studio.myproperty.DataBaseHelper;
+import com.pontic_studio.myproperty.Models.Property;
 import com.pontic_studio.myproperty.R;
+import com.pontic_studio.myproperty.adapter.PropertyAdapter;
+import com.pontic_studio.myproperty.adapter.PropertyAdapterOwner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +30,9 @@ import com.pontic_studio.myproperty.R;
  */
 public class ownerFragment extends Fragment {
 
+	private RecyclerView recyclerView;
+	private PropertyAdapter adapter;
+	private GridLayoutManager layoutManager;
 	Button addButton;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -68,6 +80,34 @@ public class ownerFragment extends Fragment {
 
 		addButton = view.findViewById(R.id.buttonAddProperty);
 
+		recyclerView = view.findViewById(R.id.propertyRecycleViewOwner);
+		DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
+		List<Property> listOfProperty = new ArrayList<>();
+		String ownerName = dataBaseHelper.getOwnerNameByID(LoginFragment.ID);
+		listOfProperty = dataBaseHelper.getPropertiesByID(ownerName);
+		PropertyAdapterOwner adapter = new PropertyAdapterOwner(listOfProperty);
+
+		recyclerView.setAdapter(adapter);
+
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+		layoutManager=new GridLayoutManager(requireContext(), 2);
+		recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setLayoutManager(layoutManager);
+
+		// Add scroll listener to RecyclerView
+		recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+			@Override
+			public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+				super.onScrolled(recyclerView, dx, dy);
+
+				if (dy > 0) {
+					// Scrolling down
+					int visibleItemCount = layoutManager.getChildCount();
+					int totalItemCount = layoutManager.getItemCount();
+					int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
+				}
+			}
+		});
 		addButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

@@ -12,6 +12,9 @@
 		<action
 			android:id="@+id/action_ownerFragment4_to_addNewProperty2"
 			app:destination="@id/addNewProperty2" />
+		<action
+			android:id="@+id/action_ownerFragment4_to_propertyDetailsFragment2"
+			app:destination="@id/propertyDetailsFragment2" />
 	</fragment>
 	<fragment
 		android:id="@+id/addNewProperty2"
@@ -22,4 +25,9 @@
 			android:id="@+id/action_addNewProperty2_to_ownerFragment4"
 			app:destination="@id/ownerFragment4" />
 	</fragment>
+	<fragment
+		android:id="@+id/propertyDetailsFragment2"
+		android:name="com.pontic_studio.myproperty.ClientActivity.PropertyDetailsFragment"
+		android:label="fragment_property_details"
+		tools:layout="@layout/fragment_property_details" />
 </navigation>

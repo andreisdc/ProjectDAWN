@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.pontic_studio.myproperty.DataBaseHelper;
 import com.pontic_studio.myproperty.Models.Client;
 import com.pontic_studio.myproperty.Models.Property;
 import com.pontic_studio.myproperty.R;
@@ -53,9 +54,10 @@ public class PropertyFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.propertyRecycleView);
-
-        List<Property> movies = new ArrayList<>();
-       PropertyAdapter adapter = new PropertyAdapter(movies);
+			DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
+        List<Property> listOfProperty = new ArrayList<>();
+				listOfProperty = dataBaseHelper.getProperties();
+       PropertyAdapter adapter = new PropertyAdapter(listOfProperty);
 
         recyclerView.setAdapter(adapter);
 

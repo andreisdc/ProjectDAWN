@@ -11,15 +11,16 @@
 		android:id="@+id/logInButtonChangeView"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="650dp"
-		android:layout_marginEnd="300dp"
+		android:layout_marginStart="150dp"
+		android:layout_marginTop="520dp"
+		android:layout_marginEnd="150dp"
 		android:text="Login"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintHorizontal_bias="1.0"
+		app:layout_constraintHorizontal_bias="0.372"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintVertical_bias="0.486" />
+		app:layout_constraintVertical_bias="0.0" />
 
 	<Button
 		android:id="@+id/signupButtonChangeView"
@@ -40,15 +41,16 @@
 		android:id="@+id/infoButtonChangeView"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginStart="300dp"
-		android:layout_marginTop="650dp"
+		android:layout_marginStart="150dp"
+		android:layout_marginTop="500dp"
+		android:layout_marginEnd="150dp"
 		android:text="Info"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintHorizontal_bias="0.411"
+		app:layout_constraintHorizontal_bias="0.304"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintVertical_bias="0.499" />
+		app:layout_constraintVertical_bias="0.515" />
 
 	<TextView
 		android:id="@+id/textView"

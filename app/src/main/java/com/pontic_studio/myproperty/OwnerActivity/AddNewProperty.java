@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +53,8 @@ public class AddNewProperty extends Fragment {
 							String ownerName = dataBaseHelper.getOwnerNameByID(LoginFragment.ID);
 							Property property = new Property(1,name.getText().toString(),ownerName,adress.getText().toString(),price.getText().toString(),status.getSelectedItem().toString(),type.getSelectedItem().toString(),description.getText().toString());
 							dataBaseHelper.addOne(property);
-
+							Log.e("TYPE: ", type.getSelectedItem().toString());
+							Navigation.findNavController(v).navigate(R.id.ownerFragment4);
 						}
 					}
 				});
