@@ -7,12 +7,17 @@
     tools:context=".MainActivity.Fragments.InfoFragment"
     android:background="@color/darkblue">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Info fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/creators"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <Button
         android:id="@+id/infoButtonDelete"
@@ -21,6 +26,8 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="200dp"
         android:text="Delete data base"
+        android:backgroundTint="@color/lightRed"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toStartOf="@+id/textView2"
         app:layout_constraintHorizontal_bias="0.0"
